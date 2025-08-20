@@ -39,6 +39,19 @@ function getRarezaClass(rareza) {
         default: return '';
     }
 }
+
+function formatMoney(value) {
+    if (value >= 1_000_000_000) {
+        return (value / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B';
+    } else if (value >= 1_000_000) {
+        return (value / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+    } else if (value >= 100_000) {
+        return (value / 1_000).toFixed(1).replace(/\.0$/, '') + 'K';
+    } else {
+        return value;
+    }
+}
+
 function getMutacionClass(mutacion) {
     switch(mutacion.toLowerCase()) {
         case 'normal': return 'label-normal';
@@ -82,8 +95,8 @@ function renderTable() {
             <td>${b.Brainrot}</td>
             <td>${b.Rareza === 'Brainrot God' ? `<span class="label label-brainrot-god" data-text="${b.Rareza}">${b.Rareza}</span>` : `<span class="label label-secret">${b.Rareza}</span>`}</td>
             <td><span class="label ${getMutacionClass(b.Mutacion)}">${b.Mutacion}</span></td>
-            <td>${b.dineroSeg}</td>
-            <td>${b.Precio}</td>
+            <td>${formatMoney(b.dineroSeg)}</td>
+            <td>${formatMoney(b.Precio)}</td>
             <td><span class="label ${getEstadoClass(b.Estado)}">${b.Estado}</span></td>
         `;
         tbody.appendChild(row);
