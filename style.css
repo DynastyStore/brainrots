@@ -28,6 +28,12 @@ input, select {
   border-radius: 5px;
 }
 
+#tableContainer {
+    max-height: 500px;  /* ajusta el alto que quieras */
+    overflow-y: auto;   /* permite scroll vertical */
+    overflow-x: hidden; /* evita scroll horizontal innecesario */
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -302,4 +308,30 @@ table td:last-child {
     max-width: 80px;
     white-space: nowrap; /* evita que se estire con texto */
     padding: 4px; /* opcional: menos padding */
+}
+
+#tableContainer {
+    overflow-y: auto;
+    max-height: 400px; /* ajustá según tu diseño */
+}
+
+/* Scrollbar fino */
+#tableContainer::-webkit-scrollbar {
+    width: 6px; /* ancho del scroll */
+}
+
+/* Fondo del scroll */
+#tableContainer::-webkit-scrollbar-track {
+    background: transparent; /* sin fondo molesto */
+}
+
+/* Barra que se arrastra */
+#tableContainer::-webkit-scrollbar-thumb {
+    background: #888; /* color gris */
+    border-radius: 4px;
+}
+
+/* Al pasar el mouse, más visible */
+#tableContainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
