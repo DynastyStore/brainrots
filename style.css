@@ -238,3 +238,68 @@ tr:nth-child(even) {
 .close-btn:hover {
   color: #ff5555;
 }
+
+td i.edit-btn, td i.delete-btn {
+    display: inline-block;
+    vertical-align: middle;
+}
+td i.edit-btn { color: #3498db; }
+td i.delete-btn { color: #e74c3c; }
+td i:hover { opacity: 0.8; }
+
+td .action-btn {
+    padding: 4px;          /* menos padding */
+    margin: 0 2px;         /* separarlos ligeramente */
+    font-size: 16px;       /* tamaño del icono */
+    width: 28px;           /* ancho fijo pequeño */
+    height: 28px;          /* alto fijo */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #2c2c2c; /* fondo oscuro discreto */
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+td .action-btn:hover {
+    background-color: #444; /* solo cambia fondo al pasar el mouse */
+}
+
+/* Botón editar */
+td .edit-btn {
+    background-color: #3498db; /* azul */
+    color: white;
+    border-radius: 4px;
+    padding: 4px 6px;
+}
+
+/* Botón borrar */
+td .delete-btn {
+    background-color: #e74c3c; /* rojo */
+    color: white;
+    border-radius: 4px;
+    padding: 4px 6px;
+}
+
+/* Efecto hover */
+td .edit-btn:hover {
+    background-color: #2980b9;
+}
+
+td .delete-btn:hover {
+    background-color: #c0392b;
+}
+
+td:last-child {
+    text-align: center;
+}
+
+table th:last-child,
+table td:last-child {
+    width: 80px; /* o el ancho que quieras, suficiente para 2 botones */
+    max-width: 80px;
+    white-space: nowrap; /* evita que se estire con texto */
+    padding: 4px; /* opcional: menos padding */
+}
