@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brainrot Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Brainrot Manager</h1>
+
+  <div class="filters">
+    <input type="text" id="searchName" placeholder="Buscar Brainrot o cuenta">
+    <select id="filterAccount">
+      <option value="">Todas las cuentas</option>
+    </select>
+    <select id="filterRareza">
+      <option value="">Todas las rarezas</option>
+      <option value="Común">Común</option>
+      <option value="Raro">Raro</option>
+      <option value="Ultra Raro">Ultra Raro</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cuenta</th>
+        <th>Brainrot</th>
+        <th>Rareza</th>
+        <th>Mutación</th>
+        <th>$/s</th>
+        <th>Precio</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <!-- Filas se llenan con JS -->
+    </tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
