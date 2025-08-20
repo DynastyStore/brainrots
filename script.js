@@ -9,6 +9,7 @@ const firebaseConfig = {
   appId: "1:1011006908289:web:6a5d114d5f366a965faa80",
   measurementId: "G-Q29LK9WBV8"
 };
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
@@ -31,15 +32,15 @@ db.ref('brainrots').on('value', snapshot => {
 });
 
 // 4️⃣ Funciones de clase
-function getRarezaClass(rareza){
-    switch(rareza.toLowerCase()){
+function getRarezaClass(rareza) {
+    switch(rareza.toLowerCase()) {
         case 'brainrot god': return 'label-brainrot-god';
         case 'secret': return 'label-secret';
         default: return '';
     }
 }
-function getMutacionClass(mutacion){
-    switch(mutacion.toLowerCase()){
+function getMutacionClass(mutacion) {
+    switch(mutacion.toLowerCase()) {
         case 'normal': return 'label-normal';
         case 'oro': return 'label-oro';
         case 'diamante': return 'label-diamante';
@@ -50,8 +51,8 @@ function getMutacionClass(mutacion){
         default: return '';
     }
 }
-function getEstadoClass(estado){
-    switch(estado.toLowerCase()){
+function getEstadoClass(estado) {
+    switch(estado.toLowerCase()) {
         case 'disponible': return 'label-disponible';
         case 'vendido': return 'label-vendido';
         case 'reservado': return 'label-reservado';
@@ -59,37 +60,29 @@ function getEstadoClass(estado){
     }
 }
 
-// 4️⃣1️⃣ Formatear dinero
-function formatMoney(value){
-    if(value >= 1_000_000_000) return (value/1_000_000_000).toFixed(1).replace(/\.0$/,'')+'B';
-    if(value >= 1_000_000) return (value/1_000_000).toFixed(1).replace(/\.0$/,'')+'M';
-    if(value >= 100_000) return (value/1_000).toFixed(1).replace(/\.0$/,'')+'K';
-    return value;
-}
-
 // 5️⃣ Renderizar tabla
-function renderTable(){
+function renderTable() {
     const tbody = document.getElementById('tableBody');
     tbody.innerHTML = '';
     const search = document.getElementById('searchName').value.toLowerCase();
     const filterAccount = document.getElementById('filterAccount').value;
     const filterRareza = document.getElementById('filterRareza').value;
 
-    const filtered = brainrotsLive.filter(b=>{
+    const filtered = brainrotsLive.filter(b => {
         const matchesSearch = b.Brainrot.toLowerCase().includes(search) || b.Cuenta.toLowerCase().includes(search);
         return matchesSearch &&
-               (filterAccount===''||b.Cuenta===filterAccount) &&
-               (filterRareza===''||b.Rareza===filterRareza);
+            (filterAccount === '' || b.Cuenta === filterAccount) &&
+            (filterRareza === '' || b.Rareza === filterRareza);
     });
 
-    filtered.forEach(b=>{
+    filtered.forEach(b => {
         const row = document.createElement('tr');
-        row.innerHTML=`
+        row.innerHTML = `
             <td>${b.Cuenta}</td>
             <td>${b.Brainrot}</td>
-            <td>${b.Rareza==='Brainrot God'? `<span class="label label-brainrot-god" data-text="${b.Rareza}">${b.Rareza}</span>` : `<span class="label label-secret">${b.Rareza}</span>`}</td>
+            <td>${b.Rareza === 'Brainrot God' ? `<span class="label label-brainrot-god" data-text="${b.Rareza}">${b.Rareza}</span>` : `<span class="label label-secret">${b.Rareza}</span>`}</td>
             <td><span class="label ${getMutacionClass(b.Mutacion)}">${b.Mutacion}</span></td>
-            <td>${formatMoney(b.dineroSeg)}</td>
+            <td>${b.dineroSeg}</td>
             <td>${b.Precio}</td>
             <td><span class="label ${getEstadoClass(b.Estado)}">${b.Estado}</span></td>
         `;
@@ -98,11 +91,12 @@ function renderTable(){
 
     // Actualizar filtro de cuentas
     const accountSelect = document.getElementById('filterAccount');
-    accountSelect.innerHTML='<option value="">Todas las cuentas</option>';
-    [...new Set(brainrotsLive.map(b=>b.Cuenta))].forEach(c=>{
+    accountSelect.innerHTML = '<option value="">Todas las cuentas</option>';
+    const cuentas = [...new Set(brainrotsLive.map(b => b.Cuenta))];
+    cuentas.forEach(c => {
         const option = document.createElement('option');
-        option.value=c;
-        option.textContent=c;
+        option.value = c;
+        option.textContent = c;
         accountSelect.appendChild(option);
     });
 }
@@ -113,7 +107,7 @@ document.getElementById('filterAccount').addEventListener('change', renderTable)
 document.getElementById('filterRareza').addEventListener('change', renderTable);
 
 // 7️⃣ Guardar nuevo Brainrot
-saveBtn.onclick = ()=>{
+saveBtn.onclick = () => {
     const newBrainrot = {
         Cuenta: document.getElementById('newCuenta').value,
         Brainrot: document.getElementById('newBrainrot').value,
@@ -124,15 +118,15 @@ saveBtn.onclick = ()=>{
         Estado: document.getElementById('newEstado').value
     };
 
-    db.ref('brainrots').push(newBrainrot, error=>{
+    db.ref('brainrots').push(newBrainrot, error => {
         if(!error){
-            addModal.style.display='none';
-            document.getElementById('newCuenta').value='';
-            document.getElementById('newBrainrot').value='';
-            document.getElementById('newDineroSeg').value='';
-            document.getElementById('newPrecio').value='';
-        }else{
-            alert('Error al guardar: '+error);
+            addModal.style.display = 'none';
+            document.getElementById('newCuenta').value = '';
+            document.getElementById('newBrainrot').value = '';
+            document.getElementById('newDineroSeg').value = '';
+            document.getElementById('newPrecio').value = '';
+        } else {
+            alert('Error al guardar: ' + error);
         }
     });
 };
