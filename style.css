@@ -208,14 +208,25 @@ tr:nth-child(even) {
   font-weight: 600;
 }
 
-.modal-content input, .modal-content select {
+/* Inputs y selects del modal */
+.modal-content input,
+.modal-content select {
   width: 100%;
-  padding: 5px;
-  margin-top: 3px;
+  padding: 8px;
+  margin: 8px 0; /* vertical: 8px, horizontal: 0 */
   background-color: #2c2c2c;
   color: #f5f5f5;
   border: 1px solid #444;
   border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Botón guardar */
+.modal-content .add-btn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
 }
 
 .close-btn {
