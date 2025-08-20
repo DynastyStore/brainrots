@@ -2,13 +2,14 @@
 // 1️⃣ Inicializar Firebase
 // ------------------------
 const firebaseConfig = {
-  apiKey: "TU_API_KEY",
-  authDomain: "tu-app.firebaseapp.com",
-  databaseURL: "https://tu-app-default-rtdb.firebaseio.com",
-  projectId: "tu-app",
-  storageBucket: "tu-app.appspot.com",
-  messagingSenderId: "1234567890",
-  appId: "1:1234567890:web:abcdef"
+  apiKey: "AIzaSyDEi6y6q-wY5tOGzRA7q6QSH6jfFzhcU6U",
+  authDomain: "brainrots-61780.firebaseapp.com",
+  databaseURL: "https://brainrots-61780-default-rtdb.firebaseio.com",
+  projectId: "brainrots-61780",
+  storageBucket: "brainrots-61780.firebasestorage.app",
+  messagingSenderId: "1011006908289",
+  appId: "1:1011006908289:web:6a5d114d5f366a965faa80",
+  measurementId: "G-Q29LK9WBV8"
 };
 
 firebase.initializeApp(firebaseConfig);
