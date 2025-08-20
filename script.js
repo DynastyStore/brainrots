@@ -108,23 +108,13 @@ document.getElementById('filterRareza').addEventListener('change', renderTable);
 
 // 7️⃣ Guardar nuevo Brainrot
 saveBtn.onclick = () => {
-    const cuenta = document.getElementById('newCuenta').value.trim();
-    const brainrot = document.getElementById('newBrainrot').value.trim();
-    const dineroSeg = Number(document.getElementById('newDineroSeg').value);
-    const precio = Number(document.getElementById('newPrecio').value);
-
-    if (!cuenta || !brainrot || isNaN(dineroSeg) || isNaN(precio)) {
-        alert("Por favor completa todos los campos correctamente.");
-        return;
-    }
-
     const newBrainrot = {
-        Cuenta: cuenta,
-        Brainrot: brainrot,
+        Cuenta: document.getElementById('newCuenta').value,
+        Brainrot: document.getElementById('newBrainrot').value,
         Rareza: document.getElementById('newRareza').value,
         Mutacion: document.getElementById('newMutacion').value,
-        dineroSeg: dineroSeg,
-        Precio: precio,
+        dineroSeg: Number(document.getElementById('newDineroSeg').value),
+        Precio: Number(document.getElementById('newPrecio').value),
         Estado: document.getElementById('newEstado').value
     };
 
